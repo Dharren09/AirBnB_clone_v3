@@ -64,6 +64,21 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
 
+    def count(self, cls=None):
+        """count the number of objects in storage"""
+        count = 0
+        for key, value in self.all(cls).items():
+            count += 1
+        return count
+
+    def get(self, cls, id):
+        """retrieve an object from the current database session"""
+        if cls and id:
+            for obj in self.all(cls).values():
+                if obj.id == id:
+                    return obj
+        return None
+
     def reload(self):
         """reloads data from the database"""
         Base.metadata.create_all(self.__engine)
