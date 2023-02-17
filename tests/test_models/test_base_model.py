@@ -30,16 +30,16 @@ class TestBaseModelDocs(unittest.TestCase):
     def test_module_docstring(self):
         """Test for the existence of module docstring"""
         self.assertIsNot(module_doc, None,
-                         "base_model.py needs a docstring")
+                "base_model.py needs a docstring")
         self.assertTrue(len(module_doc) > 1,
-                        "base_model.py needs a docstring")
+                "base_model.py needs a docstring")
 
     def test_class_docstring(self):
         """Test for the BaseModel class docstring"""
         self.assertIsNot(BaseModel.__doc__, None,
-                         "BaseModel class needs a docstring")
+                "BaseModel class needs a docstring")
         self.assertTrue(len(BaseModel.__doc__) >= 1,
-                        "BaseModel class needs a docstring")
+                "BaseModel class needs a docstring")
 
     def test_func_docstrings(self):
         """Test for the presence of docstrings in BaseModel methods"""
@@ -152,6 +152,7 @@ class TestBaseModel(unittest.TestCase):
         old_created_at = inst.created_at
         old_updated_at = inst.updated_at
         inst.save()
+        time.sleep(1)
         new_created_at = inst.created_at
         new_updated_at = inst.updated_at
         self.assertNotEqual(old_updated_at, new_updated_at)
